@@ -6,3 +6,10 @@ C:\Development\AchievementDisplay\obj\Debug\ResolveAssemblyReference.cache
 C:\Development\AchievementDisplay\obj\Debug\AchievementDisplay.dll
 C:\Development\AchievementDisplay\obj\Debug\AchievementDisplay.pdb
 C:\Development\AchievementDisplay\bin\Newtonsoft.Json.xml
+C:\Users\adamh\Documents\GitHub\AchievementDisplay\AchievementDisplay\bin\AchievementDisplay.dll
+C:\Users\adamh\Documents\GitHub\AchievementDisplay\AchievementDisplay\bin\AchievementDisplay.pdb
+C:\Users\adamh\Documents\GitHub\AchievementDisplay\AchievementDisplay\bin\EntityFramework.xml
+C:\Users\adamh\Documents\GitHub\AchievementDisplay\AchievementDisplay\bin\Newtonsoft.Json.xml
+C:\Users\adamh\Documents\GitHub\AchievementDisplay\AchievementDisplay\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\adamh\Documents\GitHub\AchievementDisplay\AchievementDisplay\obj\Debug\AchievementDisplay.dll
+C:\Users\adamh\Documents\GitHub\AchievementDisplay\AchievementDisplay\obj\Debug\AchievementDisplay.pdb
