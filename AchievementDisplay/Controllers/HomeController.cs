@@ -44,33 +44,34 @@ namespace AchievementDisplay.Controllers
                 foreach (var app in resp.games)
                 {
                     var game = client.GetPlayerStatesByGame(app.appid.ToString(), q);
-                    if(game != null)
-                        model.steamActualGameTotal++; //if no excption on the get stats call we know its an actual game
-                        
-
-                    if (game.achievements != null)
+                    if (game != null)
                     {
-                        var displayGame = new GameDisplay();
-                        displayGame.Name = game.gameName;
-                        displayGame.AppId = app.appid.ToString();
-                        model.gamesWithAch++;
+                        model.steamActualGameTotal++; //if no excption on the get stats call we know its an actual game
 
-                        foreach (var ach in game.achievements)
+                        if (game.achievements != null)
                         {
-                            model.possAch++;
-                            displayGame.PossibleAch++;
+                            var displayGame = new GameDisplay();
+                            displayGame.Name = game.gameName;
+                            displayGame.AppId = app.appid.ToString();
+                            model.gamesWithAch++;
 
-                            if (ach.achieved != 0)
+                            foreach (var ach in game.achievements)
                             {
-                                model.obtainedAch++;
-                                displayGame.ObtainedAch++;
+                                model.possAch++;
+                                displayGame.PossibleAch++;
+
+                                if (ach.achieved != 0)
+                                {
+                                    model.obtainedAch++;
+                                    displayGame.ObtainedAch++;
+                                }
+
                             }
-                                    
-                        }
 
-                        gameStats.Add(displayGame);//add player stats to be used by the model
-                    }                       
-
+                            gameStats.Add(displayGame);//add player stats to be used by the model
+                        }    
+                    }
+                        
                     //testStop++;
                     //if (testStop == 10)
                     //    break;
