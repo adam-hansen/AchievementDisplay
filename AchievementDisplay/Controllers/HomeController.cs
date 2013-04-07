@@ -51,11 +51,24 @@ namespace AchievementDisplay.Controllers
 
                 foreach (var app in resp.games)
                 {
+
+                    //lookup price data
+                    int price = 0;
+                    if (app.appid != null)
+                    {
+                        price = getGamePrice(app.appid.ToString(), client);
+                        if (price > 0)
+                        {
+                            totalPrice = totalPrice + price;
+                        }
+                        else
+                            price = 0;
+                    }
+
                     var game = client.GetPlayerStatesByGame(app.appid.ToString(), q);
                     if (game != null)
                     {
                         model.steamActualGameTotal++; //if no excption on the get stats call we know its an actual game
-
                         if (game.achievements != null)
                         {
                             var displayGame = new GameDisplay();
@@ -74,19 +87,6 @@ namespace AchievementDisplay.Controllers
                                     displayGame.ObtainedAch++;
                                 }
 
-                            }
-
-                            //lookup price data
-                            int price = 0;
-                            if (app.appid != null)
-                            {
-                                price = getGamePrice(app.appid.ToString(), client);
-                                if (price > 0)
-                                {
-                                    totalPrice = totalPrice + price;
-                                }
-                                else
-                                    price = 0;
                             }
 
                             displayGame.price = formatPrice(price);

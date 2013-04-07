@@ -2,10 +2,19 @@
     ViewBag.Title = "Steam Profile Achievements";
 }
 
-<h2>@ViewBag.Message</h2>
 <p>
-    The purpose of this site is to look at all achievements on games owned for a steam account. Your welcome Ryan.
+    Lookup achievement totals for a steam account. No data is cached so large accounts can take awhile to load.
 </p>
+
+<div>
+<p>Search using 64bit SteamId. Example: 76561197960435530.
+    <A HREF="http://steamidconverter.com/">Get SteamID</A>
+</p>
+<p>
+    
+</p>
+</div>
+
 
 @using(Ajax.BeginForm("GetProfile","Home", new AjaxOptions{
     HttpMethod = "GET",
@@ -14,7 +23,7 @@
     LoadingElementId = "progress"
 }))
 {
-    <input type="text" name="q">SteamID</input>
+    <input type="text" name="q"></input>
     <input type="submit" value="GetProfile" />
 }
 <div id="display_profile">

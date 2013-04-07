@@ -1,16 +1,19 @@
 ﻿@model AchievementDisplay.Models.ProfileDisplayModel
            
 <div id = "display_profile">
+    <h2>
+        Account Totals
+    </h2>
     <table>
         <tr>
             <th>
-                Total Games According to steam
+                Game Total
             </th>
             <th>
-                Total Games according to responses
+                Games With Stats
             </th>
             <th>
-                Total Games with Achievements
+                Games with Achievements
             </th>
             <th>
                 Possible Achievements    
@@ -19,7 +22,7 @@
                 Obtained Achievements    
             </th>
             <th>
-                Total Value    
+                Total Value of all Games    
             </th>
         </tr>
         <tr>
@@ -44,12 +47,15 @@
         </tr>
     </table>
 
+    <h2>
+        Games With Achievements
+    </h2>
     <!-- display each game, with the stats for that individual game, ordered by something? -->
     <div>
             <table>
                 <tr>
                     <th>
-                        Game
+                        Games
                     </th>
                     <th>
                         SteamId
