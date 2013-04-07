@@ -1,0 +1,92 @@
+﻿@model AchievementDisplay.Models.ProfileDisplayModel
+           
+<div id = "display_profile">
+    <table>
+        <tr>
+            <th>
+                Total Games According to steam
+            </th>
+            <th>
+                Total Games according to responses
+            </th>
+            <th>
+                Total Games with Achievements
+            </th>
+            <th>
+                Possible Achievements    
+            </th>
+            <th>
+                Obtained Achievements    
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Model.steamGameTotal
+            </td>
+            <td>
+                @Model.steamActualGameTotal
+            </td>
+            <td>
+                @Model.gamesWithAch    
+            </td>
+            <td>
+                @Model.possAch    
+            </td>
+            <td>
+                @Model.obtainedAch    
+            </td>
+        </tr>
+    </table>
+
+    <!-- display each game, with the stats for that individual game, ordered by something? -->
+    <div>
+            <table>
+                <tr>
+                    <th>
+                        Game
+                    </th>
+                    <th>
+                        SteamId
+                    </th>
+                    <th>
+                        Possible Achievements
+                    </th>
+                    <th>
+                        Obtained Achievements
+                    </th>
+                </tr>
+                 @foreach (var game in Model.listOfGames)
+                 {
+                <tr>
+                    <th>
+                        @game.Name
+                    </th>
+                    <th>
+                        @game.AppId
+                    </th>
+                    <th>
+                        @game.PossibleAch
+                    </th>
+                    <th>
+                        @game.ObtainedAch
+                    </th>
+                </tr>
+                  }
+            </table>
+        </div>
+ 
+</div>
+
+
+@*[JsonProperty]
+        public string steamID { get; set; }
+
+        [JsonProperty]
+        public string gameName { get; set; }
+
+        [JsonProperty]
+        public List<Achievement> achievements { get; set; }
+
+        [JsonProperty]
+        public bool success { get; set; }
+    }*@

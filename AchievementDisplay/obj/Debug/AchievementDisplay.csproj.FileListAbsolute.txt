@@ -1,0 +1,8 @@
+C:\Development\AchievementDisplay\bin\AchievementDisplay.dll
+C:\Development\AchievementDisplay\bin\AchievementDisplay.pdb
+C:\Development\AchievementDisplay\bin\EntityFramework.dll
+C:\Development\AchievementDisplay\bin\EntityFramework.xml
+C:\Development\AchievementDisplay\obj\Debug\ResolveAssemblyReference.cache
+C:\Development\AchievementDisplay\obj\Debug\AchievementDisplay.dll
+C:\Development\AchievementDisplay\obj\Debug\AchievementDisplay.pdb
+C:\Development\AchievementDisplay\bin\Newtonsoft.Json.xml

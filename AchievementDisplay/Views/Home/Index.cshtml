@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Steam Profile Achievements";
+}
+
+<h2>@ViewBag.Message</h2>
+<p>
+    The purpose of this site is to look at all achievements on games owned for a steam account. Your welcome Ryan.
+</p>
+
+@using(Ajax.BeginForm("GetProfile","Home", new AjaxOptions{
+    HttpMethod = "GET",
+    UpdateTargetId = "display_profile",
+    InsertionMode = System.Web.Mvc.Ajax.InsertionMode.Replace,
+    LoadingElementId = "progress"
+}))
+{
+    <input type="text" name="q">SteamID</input>
+    <input type="submit" value="GetProfile" />
+}
+<div id="display_profile">
+</div>
+
+<div id="progress">
+    <img src=@Url.Content("~/Content/images/ajax-loader.gif") alt="loading time"/>
+</div>

@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="page">
+        <header>
+            <div id="title">
+                <h1>Ryans Steam Achievement Display</h1>
+            </div>
+        </header>
+        <section id="main">
+            @RenderBody()
+        </section>
+        <footer>
+        </footer>
+    </div>
+    @Content.Script("jquery-1.5.1.min.js", Url)
+    @Content.Script("jquery.unobtrusive-ajax.js", Url)
+    @Content.Script("modernizr-1.7.min.js", Url)
+    @Content.Script("jquery-ui-1.8.11.min.js", Url)
+    @RenderSection("scripts", false)
+</body>
+</html>
