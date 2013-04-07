@@ -217,7 +217,6 @@ namespace AchievementDisplay
         public int PossibleAch { get; set; }
         public int ObtainedAch { get; set; }
         public string Name { get; set; }
-        public string price { get; set; }
     }
 }
 

@@ -41,7 +41,6 @@ namespace AchievementDisplay.Controllers
 
                 var model = new ProfileDisplayModel();
                 model.steamGameTotal = resp.game_count;
-                int totalPrice = 0;
 
                 var gameStats = new List<GameDisplay>();
 
@@ -51,20 +50,6 @@ namespace AchievementDisplay.Controllers
 
                 foreach (var app in resp.games)
                 {
-
-                    //lookup price data
-                    int price = 0;
-                    if (app.appid != null)
-                    {
-                        price = getGamePrice(app.appid.ToString(), client);
-                        if (price > 0)
-                        {
-                            totalPrice = totalPrice + price;
-                        }
-                        else
-                            price = 0;
-                    }
-
                     var game = client.GetPlayerStatesByGame(app.appid.ToString(), q);
                     if (game != null)
                     {
@@ -89,8 +74,6 @@ namespace AchievementDisplay.Controllers
 
                             }
 
-                            displayGame.price = formatPrice(price);
-
                             gameStats.Add(displayGame);//add player stats to be used by the model
                         }    
                     }
@@ -99,8 +82,6 @@ namespace AchievementDisplay.Controllers
                     //if (testStop == 10)
                     //    break;
                 }
-
-                model.priceTotal = formatPrice(totalPrice);
 
                 //do the logic to order and limit games here then pass into the model
                 model.listOfGames = gameStats.OrderByDescending(x => x.ObtainedAch); //.OrderBy(x => x.achievements.Where(a => a.achieved != 0));

@@ -23,7 +23,5 @@ namespace AchievementDisplay.Models
 
         public IEnumerable<GameDisplay> listOfGames { get; set; }
 
-        public string priceTotal { get; set; }
-
     }
 }

@@ -21,9 +21,6 @@
             <th>
                 Obtained Achievements    
             </th>
-            <th>
-                Total Value of all Games    
-            </th>
         </tr>
         <tr>
             <td>
@@ -40,9 +37,6 @@
             </td>
             <td>
                 @Model.obtainedAch    
-            </td>
-            <td>
-                @Model.priceTotal    
             </td>
         </tr>
     </table>
@@ -66,9 +60,6 @@
                     <th>
                         Obtained Achievements
                     </th>
-                    <th>
-                        Price
-                    </th>
                 </tr>
                  @foreach (var game in Model.listOfGames)
                  {
@@ -85,26 +76,9 @@
                     <th>
                         @game.ObtainedAch
                     </th>
-                    <th>
-                        @game.price
-                    </th>
                 </tr>
                   }
             </table>
         </div>
  
 </div>
-
-
-@*[JsonProperty]
-        public string steamID { get; set; }
-
-        [JsonProperty]
-        public string gameName { get; set; }
-
-        [JsonProperty]
-        public List<Achievement> achievements { get; set; }
-
-        [JsonProperty]
-        public bool success { get; set; }
-    }*@
