@@ -22,6 +22,7 @@ namespace AchievementDisplay.Controllers
         public PartialViewResult GetProfile(string q)
         {
             //pull up owned games
+            q = q.Trim();
             if (q == null && q.Length != 17)
             {
                 return null;//replace with error message
@@ -84,8 +85,7 @@ namespace AchievementDisplay.Controllers
             }
             catch (Exception e)
             {
-                //yum yum
-                return null;
+                throw e;
             }
         }
 
