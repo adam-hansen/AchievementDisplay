@@ -34,8 +34,8 @@ namespace AchievementDisplay.Controllers
             {
                 return null;//replace with error message
             }
-            try
-            {
+            //try
+            //{
                 var client = new SteamWebAPI();
                 var resp = client.GetOwnedGames(q);
 
@@ -106,13 +106,13 @@ namespace AchievementDisplay.Controllers
                 model.listOfGames = gameStats.OrderByDescending(x => x.ObtainedAch); //.OrderBy(x => x.achievements.Where(a => a.achieved != 0));
 
                 return PartialView("_ProfileDisplay", model);//this will be real return
-            }
-            catch(Exception e)
-            {
+            //}
+            //catch(Exception e)
+            //{
 
-                //yum
-                return null;
-            }
+            //    //yum
+            //    return null;
+            //}
             
         }
 
