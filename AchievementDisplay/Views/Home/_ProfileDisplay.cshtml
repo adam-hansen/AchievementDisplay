@@ -18,6 +18,9 @@
             <th>
                 Obtained Achievements    
             </th>
+            <th>
+                Total Value    
+            </th>
         </tr>
         <tr>
             <td>
@@ -34,6 +37,9 @@
             </td>
             <td>
                 @Model.obtainedAch    
+            </td>
+            <td>
+                @Model.priceTotal    
             </td>
         </tr>
     </table>
@@ -54,6 +60,9 @@
                     <th>
                         Obtained Achievements
                     </th>
+                    <th>
+                        Price
+                    </th>
                 </tr>
                  @foreach (var game in Model.listOfGames)
                  {
@@ -69,6 +78,9 @@
                     </th>
                     <th>
                         @game.ObtainedAch
+                    </th>
+                    <th>
+                        @game.price
                     </th>
                 </tr>
                   }

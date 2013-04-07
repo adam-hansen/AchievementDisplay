@@ -14,6 +14,8 @@ namespace AchievementDisplay
         public string ryansCharId = "76561198019745749";
 
         private string getGameStatsFormat = "http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?appid={0}&key={1}&steamid={2}&format=json";
+        private string getGamePriceDataFormat = "http://store.steampowered.com/api/appdetails/?appids={0}";
+        
 
         public Response GetOwnedGames(string steamId)
         {
@@ -64,7 +66,49 @@ namespace AchievementDisplay
             return gameStats.playerstats;
         }
 
+        public int GetPriceByGame(string appId)
+        {
+            string json = null;
+            using (var client = new WebClient())
+            {
+                var uri = new Uri(string.Format(getGamePriceDataFormat, appId));
+                try
+                {
+                    json = client.DownloadString(uri);
+                }
+                catch(Exception e)
+                {
+                    return -1;
+                }
+                json = json.Replace("\n", "");
+                json = json.Replace("\t", "");
+                //json = json.Replace("\"", "");
+                //json = json.Replace("/", "");
+                //json = json.Replace("\\", "");
+
+                string successMatch = "success\":true";
+                int idx = json.IndexOf(successMatch); //find if false or true is found
+                if (idx < 0)
+                    return -1;
+                idx = idx + successMatch.Length;
+                json = json.Substring(idx+1, json.Length - idx -2); //strip it down to just data and the end
+                json = "{" + json; //add the { to the start that was removed by the stripping
+            }
+
+            var game = JsonConvert.DeserializeObject<rootPrice>(json);
+            if (game.data.price_overview == null)
+                return -1;
+
+            return game.data.price_overview.final;
+        }
+
+        
+
     }
+
+   
+
+
 
     //should seperate the json classes but whatever
     [JsonObject(MemberSerialization.OptIn)]
@@ -130,6 +174,42 @@ namespace AchievementDisplay
         public Playerstats playerstats { get; set; }
     }
 
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Data
+    {
+        [JsonProperty]
+        public string steam_appid { get; set; }
+
+        [JsonProperty]
+        public string type { get; set; } 
+
+        [JsonProperty]
+        public PriceOverview price_overview { get; set; }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class PriceOverview
+    {
+        [JsonProperty]
+        public string currency { get; set; }
+        
+        [JsonProperty]
+        public int initial { get; set; }
+
+        [JsonProperty]
+        public int final { get; set; }
+
+        [JsonProperty]
+        public int discount_percent { get; set; }
+    }
+
+    [JsonObject(MemberSerialization.OptIn)]
+    public class rootPrice
+    {
+        [JsonProperty]
+        public Data data { get; set; }
+    }
+
     //wrap games for display
     public class GameDisplay
     {
@@ -137,5 +217,7 @@ namespace AchievementDisplay
         public int PossibleAch { get; set; }
         public int ObtainedAch { get; set; }
         public string Name { get; set; }
+        public string price { get; set; }
     }
 }
+

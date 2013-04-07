@@ -14,6 +14,13 @@ namespace AchievementDisplay.Controllers
             return View();
         }
 
+        public ActionResult Testing()
+        {
+            var price = new SteamWebAPI().GetPriceByGame("8890");
+
+            return View();
+        }
+
         public ActionResult About()
         {
             return View();
@@ -34,7 +41,7 @@ namespace AchievementDisplay.Controllers
 
                 var model = new ProfileDisplayModel();
                 model.steamGameTotal = resp.game_count;
-
+                int totalPrice = 0;
 
                 var gameStats = new List<GameDisplay>();
 
@@ -69,24 +76,61 @@ namespace AchievementDisplay.Controllers
 
                             }
 
+                            //lookup price data
+                            int price = 0;
+                            if (app.appid != null)
+                            {
+                                price = getGamePrice(app.appid.ToString(), client);
+                                if (price > 0)
+                                {
+                                    totalPrice = totalPrice + price;
+                                }
+                                else
+                                    price = 0;
+                            }
+
+                            displayGame.price = formatPrice(price);
+
                             gameStats.Add(displayGame);//add player stats to be used by the model
                         }    
                     }
-                        
+
                     //testStop++;
                     //if (testStop == 10)
                     //    break;
                 }
+
+                model.priceTotal = formatPrice(totalPrice);
 
                 //do the logic to order and limit games here then pass into the model
                 model.listOfGames = gameStats.OrderByDescending(x => x.ObtainedAch); //.OrderBy(x => x.achievements.Where(a => a.achieved != 0));
 
                 return PartialView("_ProfileDisplay", model);//this will be real return
             }
-            catch (Exception e)
+            catch(Exception e)
             {
-                throw e;
+
+                //yum
+                return null;
             }
+            
+        }
+
+        private string formatPrice(int input)
+        {
+            var str = input.ToString();
+            if (str.Length < 2)
+                str = "0.0" + str;
+            else if (str.Length < 3)
+                str = "0." + str;
+            else
+                str = str.Insert(str.Length - 2, ".");
+            return "$" + str;
+        }
+
+        private int getGamePrice(string appId, SteamWebAPI client)
+        {
+            return client.GetPriceByGame(appId);
         }
 
     }
